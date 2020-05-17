@@ -17,46 +17,45 @@
   </head>
   <body>
     <div class="calculator">
-      <!-- Text for top of calc -->
-      <p id="title">Digital Brain</p>
-      <p id="tagLine">Computational Genuis ™</p>
       <!-- Display Screen -->
       <input id="answer" type="text" disabled />
       <!-- Buttons -->
       <div class="table">
         <!-- Top row -->
         <tr class="row">
-          <td><button class="ctrl">AC</button></td>
-          <td><button class="ctrl">CE</button></td>
-          <td><button>%</button></td>
-          <td><button>÷</button></td>
+          <td><button class="grey">AC</button></td>
+          <td><button class="grey">+/-</button></td>
+          <td><button class="grey">%</button></td>
+          <td><button class="orange">÷</button></td>
         </tr>
         <!-- Second row -->
         <tr class="row">
           <td><button>7</button></td>
           <td><button>8</button></td>
           <td><button>9</button></td>
-          <td><button>X</button></td>
+          <td><button class="orange">x</button></td>
         </tr>
         <!-- Third row -->
         <tr class="row">
           <td><button>4</button></td>
           <td><button>5</button></td>
           <td><button>6</button></td>
-          <td><button>-</button></td>
+          <td><button class="orange">-</button></td>
         </tr>
         <!-- Fourth row -->
         <tr class="row">
           <td><button>1</button></td>
           <td><button>2</button></td>
           <td><button>3</button></td>
-          <td><button class="tall">+</button></td>
+          <td><button class="orange">+</button></td>
         </tr>
         <!-- Bottom row -->
         <tr class="row">
+          <div id="zero"></div>
           <td><button>0</button></td>
+          <td><button id="invisible">.</button></td>
           <td><button>.</button></td>
-          <td><button>=</button></td>
+          <td><button class="orange">=</button></td>
         </tr>
       </div>
     </div>

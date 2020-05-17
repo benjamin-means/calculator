@@ -1,54 +1,29 @@
-/* Make changes so it looks more the like the calculator we used to have at home as a kid" */
-
 body {
-  background-color: var(--darkTan);
+  background-color: white;
   width: 100%;
 }
 
-/* Colours */
-/* Change to colors from home calculator */
-:root {
-  --darkTan: #9b8f89;
-  --tan: #f3eee7;
-  --grey: #969194;
-  --green: #c7c7b0;
-  --darkGrey: #4b4657;
-  --red: #cc4e5f;
-}
-
 .calculator {
-  height: 315px;
+  height: 300px;
   width: 250px;
-  background-color: var(--tan);
+  background-color: black;
   margin: 0 auto;
   font-family: "Montserrat", sans-serif;
   text-align: center;
-  border-top-left-radius: 80%15px;
-  border-bottom-left-radius: 80%15px;
-  border-top-right-radius: 80%15px;
-  border-bottom-right-radius: 80%15px;
-  /* Do shadow stuff */
-}
-
-#title {
-  color: var(--darkGrey);
-  padding-top: 10px;
-  margin-bottom: -6px;
-  font-family: "Pacifico", cursive;
-}
-
-#tagLine {
-  color: var(--grey);
-  text-transform: uppercase;
-  font-size: 0.6em;
+  padding-top: 40px;
+  z-index: -1;
 }
 
 #answer {
-  background-color: var(--green);
+  background-color: black;
   width: 80%;
   line-height: 40px;
   border: 1px solid;
-  border-color: var(--red);
+  border: none;
+  text-align: right;
+  font-size: 2rem;
+  /* font-weight: thin; get the output looking less solid */
+  color: white;
 }
 /* Input box/numbers/buttons:
 font-size & family,
@@ -60,9 +35,14 @@ shadows. */
   margin: 10px auto;
 }
 
-.ctrl {
-  background-color: var(--red);
-  color: white;
+.grey {
+  background-color: #aaa;
+  color: black;
+  border: none;
+}
+
+.orange {
+  background-color: #f90;
 }
 /* set borders and border shadows */
 
@@ -75,27 +55,32 @@ Remove row class?
 */
 
 button {
-  background-color: var(--darkTan);
+  background-color: #333;
   color: white;
   width: 40px;
-  height: 30px;
+  height: 40px;
   margin-left: 5px;
   margin-right: 5px;
   margin-bottom: 6px;
-  border-top-left-radius: 70%10px;
-  border-bottom-left-radius: 70%10px;
-  border-top-right-radius: 70%10px;
-  border-bottom-right-radius: 70%10px;
-  border: 1px solid;
-  border-color: var(--darkGrey);
+  border-radius: 50%;
+  border: none;
   font-size: 0.9em;
+  z-index: 1;
+  position: relative;
 }
 /* Buttons:
 set focus and active state?. */
 
-.tall {
-  height: 65px;
-  float: right;
-  margin-right: 24px;
-  margin-left: -7px;
+#zero {
+  float: left;
+  margin-left: 42px;
+  background-color: #333;
+  height: 40px;
+  width: 55px;
+  position: absolute;
+  z-index: 0;
+}
+
+#invisible {
+  color: #333;
 }
