@@ -2,23 +2,32 @@
 // Don't forget to fix the zero button
 
 window.addEventListener("click", calculate);
+window.addEventListener("click", acToggle);
 
 var current = "";
 var entries = [];
 // TINKER
-var total = 0;
 var lastSpec = "";
-var lastNum = "";
+
+function acToggle() {
+  var ac = document.getElementById("AC");
+  if (current != "" && entries != []) {
+    ac.innerHTML = "C";
+  }
+  if (current == "" && lastSpec == "") {
+    ac.innerHTML = "AC";
+  }
+}
 
 function calculate(event) {
   var btn = event.target.firstChild.data;
   var output = document.getElementById("answer");
+  var AC = document.getElementById("AC");
   //use something other than a for loop?
   // TINKER
-  var special = ["x", "÷", "+", "-" /*, "%", "+/-"*/];
+  var special = ["x", "÷", "+", "-"];
   for (var k = 0; k < special.length; k++) {
     if (btn == special[k]) {
-      // console.log("same");
       lastSpec = special[k];
     }
   }
@@ -26,10 +35,8 @@ function calculate(event) {
   if (!isNaN(btn) || btn == ".") {
     current += btn;
     output.value = current;
-    // lastNum = btn;
-  } else if (btn == "AC") {
+  } else if (btn == "AC" || btn == "C") {
     current = "";
-    total = 0;
     entries = [];
     lastSpec = "";
     output.value = "";
@@ -49,7 +56,7 @@ function calculate(event) {
   else if (btn == "%") {
     entries.push(current);
     output.value = current / 100;
-    current = current / 100;
+    current = (current / 100).toString();
     entries.pop();
     if (lastSpec != "") {
       entries = [];
@@ -136,14 +143,8 @@ function calculate(event) {
     current = "";
   }
 
-  // lastSpec = btn;
-
-  // console.log(btn);
-  // console.log(lastNum);
   console.log(current);
-  console.log(total);
   console.log(entries);
-  // console.log(lastSpec);
 }
 
 // function calculate(event) {
