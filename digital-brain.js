@@ -7,7 +7,7 @@ var current = "";
 var entries = [];
 // TINKER
 var total = 0;
-var lastClick = "";
+var lastSpec = "";
 var lastNum = "";
 
 function calculate(event) {
@@ -15,35 +15,34 @@ function calculate(event) {
   var output = document.getElementById("answer");
   //use something other than a for loop?
   // TINKER
-  var special = ["x", "÷", "+", "-", "%", "+/-"];
+  var special = ["x", "÷", "+", "-" /*, "%", "+/-"*/];
   for (var k = 0; k < special.length; k++) {
     if (btn == special[k]) {
       // console.log("same");
-      lastClick = special[k];
+      lastSpec = special[k];
     }
   }
 
   if (!isNaN(btn) || btn == ".") {
     current += btn;
     output.value = current;
-    lastNum = btn;
+    // lastNum = btn;
   } else if (btn == "AC") {
     current = "";
     total = 0;
     entries = [];
-    lastClick = "";
+    lastSpec = "";
     output.value = "";
   } else if (btn == "-") {
     // TINKER
-    // if (lastClick != "") {
-    //   entries = [];
-    //   entries.push(current);
-    //   entries.push(lastClick);
-    //   entries.push(lastNum);
-    // }
     entries.push(current);
     entries.push("-");
     current = "";
+    if (lastSpec != "") {
+      current = "";
+      entries.splice(1, entries.length);
+      entries.push(lastSpec);
+    }
   }
   // divide by 100 and return output
   // TINKER
@@ -52,6 +51,10 @@ function calculate(event) {
     output.value = current / 100;
     current = current / 100;
     entries.pop();
+    if (lastSpec != "") {
+      entries = [];
+      entries.push(current);
+    }
   } else if (btn == "+/-") {
     var thing = current.substring(0, 1);
     if (thing != "-") {
@@ -65,18 +68,29 @@ function calculate(event) {
     entries.push(current);
     entries.push("+");
     current = "";
+    if (lastSpec != "") {
+      current = "";
+      entries.splice(1, entries.length);
+      entries.push(lastSpec);
+    }
   } else if (btn == "x") {
     entries.push(current);
     entries.push("*");
-    // total = Number(current);
-    // output.value = current;
     current = "";
+    if (lastSpec != "") {
+      current = "";
+      entries.splice(1, entries.length);
+      entries.push("*");
+    }
   } else if (btn == "÷") {
     entries.push(current);
     entries.push("/");
-    // total = Number(current);
-    // output.value = current;
     current = "";
+    if (lastSpec != "") {
+      current = "";
+      entries.splice(1, entries.length);
+      entries.push("/");
+    }
   } else if (btn == "=") {
     entries.push(current);
     // use something other than for loop?
@@ -105,30 +119,31 @@ function calculate(event) {
       current = -Math.abs(nt);
     }
     output.value = nt;
-    entries = [];
+    // entries = [];
     current = nt.toString();
     // figure out how to make it so you can spam = and swap between + && - etc
     // BIG TINKER
-    // if (lastClick != "") {
-    //   entries.push(current);
-    //   entries.push(lastClick);
-    //   entries.push(lastNum);
-    //   console.log("ye");
-    // }
+    if (lastSpec != "") {
+      entries.shift();
+      entries.unshift(current);
+      if (entries.length > 2) {
+        entries.splice(3, entries.length);
+      }
+    }
   } else {
     entries.push(current);
     entries.push(output.value);
     current = "";
   }
 
-  // lastClick = btn;
+  // lastSpec = btn;
 
   // console.log(btn);
   // console.log(lastNum);
   console.log(current);
   console.log(total);
   console.log(entries);
-  // console.log(lastClick);
+  // console.log(lastSpec);
 }
 
 // function calculate(event) {
