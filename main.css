@@ -1,46 +1,60 @@
+/* Things to tweak:
+Fix margins around buttons
+Fix zero button
+Fix display in input field
+Fix dimensions
+move to middle of page
+flex container?
+media queries
+*/
+
 body {
   background-color: white;
   width: 100%;
 }
 
 #backdrop {
-  margin: 0 auto;
-  height: 350px;
-  width: 230px;
-  z-index: -3;
+  height: 400px;
+  width: 250px;
   position: absolute;
-  /* background-color: black; */
-  display: none;
+  z-index: -4;
+}
+
+#calculaterBground {
+  background-color: black;
+  height: 380px;
+  width: 220px;
+  margin-top: 10px;
+  margin-left: 15px;
+  position: absolute;
+  z-index: -5;
 }
 
 .calculator {
-  height: 300px;
-  width: 250px;
-  background-color: black;
-  margin: 0 auto;
+  /* background-image: url("iphonebackground.png"); */
+  height: 340px;
+  width: 220px;
+  margin-top: 10px;
+  margin-left: 15px;
   font-family: "Montserrat", sans-serif;
   text-align: center;
   padding-top: 40px;
-  z-index: -1;
+  z-index: 0;
+  position: absolute;
 }
 
 #answer {
   background-color: black;
   width: 90%;
-  margin-right: 20px;
-  line-height: 40px;
-  border: 1px solid;
+  margin-right: 2px;
+  margin-bottom: 0;
+  line-height: 60px;
   border: none;
   text-align: right;
-  font-size: 1.7rem;
+  font-size: 1.5rem;
   /* font-weight: thin; get the output looking less solid */
   color: white;
 }
-/* Input box/numbers/buttons:
-font-size & family,
-direction?
-padding and margins,
-shadows. */
 
 .table {
   margin: 10px auto;
@@ -55,15 +69,6 @@ shadows. */
 .orange {
   background-color: #f90;
 }
-/* set borders and border shadows */
-
-/* .row {
-  display: block;
-} 
-
-Remove row class?
-
-*/
 
 button {
   background-color: #333;
@@ -79,17 +84,15 @@ button {
   z-index: 1;
   position: relative;
 }
-/* Buttons:
-set focus and active state?. */
 
 #zero {
   float: left;
-  margin-left: 42px;
+  margin-left: 32px; /*42*/
   background-color: #333;
   height: 40px;
   width: 55px;
   position: absolute;
-  z-index: 0;
+  z-index: -2;
 }
 
 #invisible {

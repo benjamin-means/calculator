@@ -6,6 +6,7 @@
 // fix zero button
 // remove window event listeners and replace with calculator listeners
 // Tidy code further "my function does... and.." = failed to tidy
+// tidy code by putting groupds into individual funciton e.g. all numbers, all operators etc.
 
 // Event listeners
 window.addEventListener("click", updateBtn);
