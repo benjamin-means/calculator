@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+    <link rel="stylesheet" href="main.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <img id="backdrop" src="iphonebackground.png" alt="backdrop" />
+    <div id="calculaterBground"></div>
+    <div class="calculator">
+      <!-- Display Screen -->
+      <input id="answer" type="text" disabled />
+      <!-- Buttons -->
+      <div class="table">
+        <!-- Top row -->
+        <tr class="row">
+          <td><button id="AC" class="grey">AC</button></td>
+          <td><button class="grey">+/-</button></td>
+          <td><button class="grey">%</button></td>
+          <td><button class="orange">÷</button></td>
+        </tr>
+        <!-- Second row -->
+        <tr class="row">
+          <td><button>7</button></td>
+          <td><button>8</button></td>
+          <td><button>9</button></td>
+          <td><button class="orange">x</button></td>
+        </tr>
+        <!-- Third row -->
+        <tr class="row">
+          <td><button>4</button></td>
+          <td><button>5</button></td>
+          <td><button>6</button></td>
+          <td><button class="orange">-</button></td>
+        </tr>
+        <!-- Fourth row -->
+        <tr class="row">
+          <td><button>1</button></td>
+          <td><button>2</button></td>
+          <td><button>3</button></td>
+          <td><button class="orange">+</button></td>
+        </tr>
+        <!-- Bottom row -->
+        <tr class="row">
+          <div id="zero"></div>
+          <td><button>0</button></td>
+          <td><button id="invisible">0</button></td>
+          <td><button>.</button></td>
+          <td><button class="orange">=</button></td>
+        </tr>
+      </div>
+    </div>
+    <script src="digital-brain.js"></script>
+  </body>
+</html>

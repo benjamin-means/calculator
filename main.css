@@ -1,0 +1,100 @@
+/* Things to tweak:
+Fix margins around buttons
+Fix zero button
+Fix display in input field
+Fix dimensions
+move to middle of page
+flex container?
+media queries
+*/
+
+body {
+  background-color: white;
+  width: 100%;
+}
+
+#backdrop {
+  height: 400px;
+  width: 250px;
+  position: absolute;
+  z-index: -4;
+}
+
+#calculaterBground {
+  background-color: black;
+  height: 380px;
+  width: 220px;
+  margin-top: 10px;
+  margin-left: 15px;
+  position: absolute;
+  z-index: -5;
+}
+
+.calculator {
+  /* background-image: url("iphonebackground.png"); */
+  height: 340px;
+  width: 220px;
+  margin-top: 10px;
+  margin-left: 15px;
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+  padding-top: 40px;
+  z-index: 0;
+  position: absolute;
+}
+
+#answer {
+  background-color: black;
+  width: 90%;
+  margin-right: 2px;
+  margin-bottom: 0;
+  line-height: 60px;
+  border: none;
+  text-align: right;
+  font-size: 1.5rem;
+  /* font-weight: thin; get the output looking less solid */
+  color: white;
+}
+
+.table {
+  margin: 10px auto;
+}
+
+.grey {
+  background-color: #aaa;
+  color: black;
+  border: none;
+}
+
+.orange {
+  background-color: #f90;
+}
+
+button {
+  background-color: #333;
+  color: white;
+  width: 40px;
+  height: 40px;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 6px;
+  border-radius: 50%;
+  border: none;
+  font-size: 0.9em;
+  z-index: 1;
+  position: relative;
+}
+
+#zero {
+  float: left;
+  margin-left: 32px; /*42*/
+  background-color: #333;
+  height: 40px;
+  width: 55px;
+  position: absolute;
+  z-index: -2;
+}
+
+#invisible {
+  color: #333;
+}
