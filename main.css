@@ -26,12 +26,13 @@ body {
 
 #answer {
   background-color: black;
-  width: 80%;
+  width: 90%;
+  margin-right: 20px;
   line-height: 40px;
   border: 1px solid;
   border: none;
   text-align: right;
-  font-size: 2rem;
+  font-size: 1.7rem;
   /* font-weight: thin; get the output looking less solid */
   color: white;
 }

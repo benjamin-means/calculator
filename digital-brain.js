@@ -1,8 +1,14 @@
-// Don't forget to fix the zero button
+// Things to still toggle with
+
+// Align input box with orange buttons
+// Improve AC/C toggle
+// round numbers as they get large
+// fix zero button
+// remove window event listeners and replace with calculator listeners
+// Tidy code further "my function does... and.." = failed to tidy
 
 // Event listeners
 window.addEventListener("click", updateBtn);
-window.addEventListener("click", specialBtn);
 window.addEventListener("click", acToggle);
 
 // Global Variables
@@ -15,55 +21,61 @@ var output = document.getElementById("answer");
 // Updates button variable
 function updateBtn() {
   btn = event.target.firstChild.data;
-  if (btn == "AC" || btn == "C") {
-    clearEntries();
-  }
   if (!isNaN(btn) || btn == ".") {
     current += btn;
-    output.value = current;
+    if (current.length > 10) {
+      output.value = Number.parseFloat(Number(current)).toPrecision(9);
+    } else {
+      output.value = current;
+    }
   }
-  if (btn == "=") {
-    equalsBtn();
-  }
+  clearEntries();
+  equalsBtn();
   lastOperator();
   operators();
-  // console.log(current);
-  // console.log(entries);
+  percentageBtn();
+  plusOrMinusBtn();
 }
 
 // Equals function
 function equalsBtn() {
-  entries.push(current);
-  var nt = Number(entries[0]);
-  for (var i = 1; i < entries.length; i++) {
-    var next = Number(entries[i + 1]);
-    var sym = entries[i];
+  if (btn == "=") {
+    entries.push(current);
+    var nt = Number(entries[0]);
+    for (var i = 1; i < entries.length; i++) {
+      var next = Number(entries[i + 1]);
+      var sym = entries[i];
 
-    if (sym == "+") {
-      nt += next;
+      if (sym == "+") {
+        nt += next;
+      }
+      if (sym == "-") {
+        nt -= next;
+      }
+      if (sym == "*") {
+        nt *= next;
+      }
+      if (sym == "/") {
+        nt /= next;
+      }
+      i++;
     }
-    if (sym == "-") {
-      nt -= next;
+    if (nt < 0) {
+      nt = "-" + Math.abs(nt);
+      current = -Math.abs(nt);
     }
-    if (sym == "*") {
-      nt *= next;
+    if (current.length > 10) {
+      output.value = Number.parseFloat(Number(nt)).toPrecision(9);
+    } else {
+      output.value = nt;
     }
-    if (sym == "/") {
-      nt /= next;
-    }
-    i++;
-  }
-  if (nt < 0) {
-    nt = "-" + Math.abs(nt);
-    current = -Math.abs(nt);
-  }
-  output.value = nt;
-  current = nt.toString();
-  if (lastSpec != "") {
-    entries.shift();
-    entries.unshift(current);
-    if (entries.length > 2) {
-      entries.splice(3, entries.length);
+
+    current = nt.toString();
+    if (lastSpec != "") {
+      entries.splice(0, 1, current);
+      if (entries.length > 2) {
+        entries.splice(3, entries.length);
+      }
     }
   }
 }
@@ -78,54 +90,44 @@ function lastOperator() {
   }
 }
 
-// operators function
+// Operators function
 function operators() {
-  if (btn == "-") {
-    entries.push(current);
-    entries.push("-");
-    current = "";
-    if (lastSpec != "") {
+  var operator = ["x", "÷", "+", "-"];
+  for (var i = 0; i < operator.length; i++)
+    if (btn == operator[i]) {
+      entries.push(current);
+      if (btn == "x") {
+        entries.push("*");
+      } else if (btn == "÷") {
+        entries.push("/");
+      } else {
+        entries.push(operator[i]);
+      }
       current = "";
-      entries.splice(1, entries.length);
-      entries.push(lastSpec);
+
+      if (lastSpec != "") {
+        current = "";
+        entries.splice(1, entries.length);
+        if (btn == "x") {
+          entries.push("*");
+        } else if (btn == "÷") {
+          entries.push("/");
+        } else {
+          entries.push(lastSpec);
+        }
+      }
     }
-  } else if (btn == "+") {
-    entries.push(current);
-    entries.push("+");
-    current = "";
-    if (lastSpec != "") {
-      current = "";
-      entries.splice(1, entries.length);
-      entries.push(lastSpec);
-    }
-  } else if (btn == "x") {
-    entries.push(current);
-    entries.push("*");
-    current = "";
-    if (lastSpec != "") {
-      current = "";
-      entries.splice(1, entries.length);
-      entries.push("*");
-    }
-  } else if (btn == "÷") {
-    entries.push(current);
-    entries.push("/");
-    current = "";
-    if (lastSpec != "") {
-      current = "";
-      entries.splice(1, entries.length);
-      entries.push("/");
-    }
-  }
 }
 
-// Clears all entries
+// Clears all global variables
 function clearEntries() {
-  current = "";
-  entries = [];
-  lastSpec = "";
-  output.value = "";
-  btn = "";
+  if (btn == "AC" || btn == "C") {
+    current = "";
+    entries = [];
+    lastSpec = "";
+    output.value = "";
+    btn = "";
+  }
 }
 // Toggles the "AC"/"C" button
 function acToggle() {
@@ -138,8 +140,8 @@ function acToggle() {
   }
 }
 
-// Special buttons function
-function specialBtn() {
+// % button function
+function percentageBtn() {
   if (btn == "%") {
     entries.push(current);
     output.value = current / 100;
@@ -149,21 +151,26 @@ function specialBtn() {
       entries = [];
       entries.push(current);
     }
-  } else if (btn == "+/-") {
-    var thing = current.substring(0, 1);
-    if (thing != "-") {
+  }
+}
+
+// +/- buttons function
+function plusOrMinusBtn() {
+  if (btn == "+/-") {
+    var firstString = current.substring(0, 1);
+    if (firstString != "-") {
       current = (-Math.abs(current)).toString();
       output.value = current;
-      entries.shift();
-      entries.unshift(current);
-    } else if (thing == "-") {
+      entries.splice(0, 1, current);
+    } else if (firstString == "-") {
       current = Math.abs(current).toString();
       output.value = current;
-      entries.shift();
-      entries.unshift(current);
+      entries.splice(0, 1, current);
     }
   }
-
+  // de-bugging checks
+  console.log(btn);
+  console.log(lastSpec);
   console.log(current);
   console.log(entries);
 }
