@@ -3,6 +3,16 @@ body {
   width: 100%;
 }
 
+#backdrop {
+  margin: 0 auto;
+  height: 350px;
+  width: 230px;
+  z-index: -3;
+  position: absolute;
+  /* background-color: black; */
+  display: none;
+}
+
 .calculator {
   height: 300px;
   width: 250px;
